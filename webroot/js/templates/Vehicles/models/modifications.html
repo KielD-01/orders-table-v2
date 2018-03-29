@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-sm-12">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Modifications Filter" ng-model="modificationsFilter"/>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Modification</th>
+                <th>Production Started</th>
+                <th>Production Ended</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tr ng-repeat-start="modification in modification.modificationList | filter : modificationsFilter"
+                ng-show="(modification.modificationList | filter : modificationsFilter).length != 0">
+                <td ng-bind="modification.id" ui-sref="parts_categories({modification : modification.slug})"></td>
+                <td ng-bind="modification.modification"></td>
+                <td ng-bind="modification.start_year_month"></td>
+                <td ng-bind="modification.end_year_month"></td>
+                <td>
+                    <i class="fa" style="cursor:pointer;"
+                       ng-class="{'fa-plus': !toogled[modification.id], 'fa-minus' : toogled[modification.id]}"
+                       ng-click="toogled[modification.id] = !toogled[modification.id]"
+                       ng-init="toogled[modification.id] = false"></i>
+                </td>
+            </tr>
+            <tr ng-repeat-end ng-show="toogled[modification.id]">
+                <td colspan="5">
+                    <div class="box box-info">
+                        <div class="box-body"></div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr ng-show="(modification.modificationList | filter : modificationsFilter).length == 0">
+                <td colspan="5" class="text-center">
+
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>

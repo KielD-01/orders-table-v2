@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="PartsResellerApp">
+<head>
+    <meta charset="UTF-8">
+    <title ng-bind="texts.app_title + ' | ' + texts.page.title"></title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    {{ _view.Html.css('bootstrap.min') | raw }}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+    {{ _view.Html.css('skins/_all-skins.min') | raw }}
+    {{ _view.Html.css('../node_modules/angular-block-ui/dist/angular-block-ui.min') | raw }}
+    {{ _view.Html.css('Patron.min') | raw }}
+    <link href="/iCheck/flat/blue.css" rel="stylesheet" type="text/css"/>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="skin-blue sidebar-mini">
+
+{{ _view.fetch('content') | raw }}
+
+{{ _view.Html.script('../node_modules/jquery/dist/jquery') | raw }}
+{{ _view.Html.script('../node_modules/bootstrap/dist/js/bootstrap.min') | raw }}
+{{ _view.Html.script('jquery-ui.min') | raw }}
+{{ _view.Html.script('../node_modules/angular/angular') | raw }}
+{{ _view.Html.script('../node_modules/@uirouter/angularjs/release/angular-ui-router') | raw }}
+{{ _view.Html.script('../node_modules/angular-block-ui/dist/angular-block-ui') | raw }}
+{{ _view.Html.script('../node_modules/angular-lazy-img/dist/angular-lazy-img.min') | raw }}
+
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+
+{{ _view.Html.script('Patron.min') | raw }}
+
+{{ _view.Html.script('app') | raw }}
+
+{{ _view.Html.script('conf/Routes') | raw }}
+{{ _view.Html.script('conf/Config') | raw }}
+{{ _view.Html.script('conf/Run') | raw }}
+
+{{ _view.Html.script('directives/SessionUser') | raw }}
+
+{{ _view.Html.script('controllers/AppController') | raw }}
+{{ _view.Html.script('controllers/DashboardController') | raw }}
+{{ _view.Html.script('controllers/RequestController') | raw }}
+{{ _view.Html.script('controllers/VehiclesController') | raw }}
+
+{{ _view.Html.script('services/Models') | raw }}
+{{ _view.Html.script('services/VehicleTypes') | raw }}
+{{ _view.Html.script('services/GeneralModels') | raw }}
+{{ _view.Html.script('services/Manufacturers') | raw }}
+{{ _view.Html.script('services/PartCategories') | raw }}
+{{ _view.Html.script('services/ModelModifications') | raw }}
+
+</body>
+</html>

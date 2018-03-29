@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Models Filter" ng-model="modelsFilter"/>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-2" ng-repeat="model in models | filter : modelsFilter"
+         style="cursor: pointer;">
+        <div class="box" ng-class="{'box-warning' : hoveredModel == model.modelSlug}"
+             ng-mouseenter="setHoveredModel(model.modelSlug)"
+             ng-mouseleave="unsetHoveredModel()">
+
+            <div class="box-body text-center" ui-sref="model_modifications({model : model.modelSlug})">
+                <img ng-src="[[ model.img ]]" alt="">
+                <p ng-bind="model.model"></p>
+            </div>
+
+        </div>
+    </div>
+</div>

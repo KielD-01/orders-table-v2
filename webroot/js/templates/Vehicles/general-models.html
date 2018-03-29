@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="General Models Filter" ng-model="generalModelsFilter"/>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-2" ng-repeat="generalModel in generalModels | filter : generalModelsFilter"
+         style="cursor: pointer;">
+        <div class="box" ng-class="{'box-warning' : hoveredGeneralModel == generalModel.general_model_slug}"
+             ng-mouseenter="setHoveredGeneralModel(generalModel.general_model_slug)"
+             ng-mouseleave="unsetHoveredGeneralModel()">
+
+            <div class="box-body text-center" ui-sref="car_models({general_model : generalModel.general_model_slug})">
+                <img ng-src="[[ generalModel.img ]]" alt="">
+                <p ng-bind="generalModel.general_model"></p>
+            </div>
+
+        </div>
+    </div>
+</div>
