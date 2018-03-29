@@ -54,7 +54,7 @@ class ExistUaComponent extends Component
     public function getVehicles($type = null)
     {
         $this->setType($type);
-        return $this->sendRequest($this->buildUrl(), $type ? $type : 'vehicles');
+        return $this->sendRequest($this->buildUrl(), $type);
     }
 
     public function getGeneralModels($type = null, $manufacturer = null)
@@ -65,7 +65,7 @@ class ExistUaComponent extends Component
             $this->requestData['slashes'][] = 'car_models_general';
             $this->requestData['?']['manufacture__slug'] = $manufacturer;
 
-            return $this->sendRequest($this->buildUrl(), $manufacturer ? "{$type}_{$manufacturer}_general_models" : 'general_models');
+            return $this->sendRequest($this->buildUrl(), "{$type}_{$manufacturer}_general_models");
         }
 
         return $this->noContent();
@@ -79,7 +79,7 @@ class ExistUaComponent extends Component
             $this->requestData['?']['manufacture__slug'] = $manufacturer;
             $this->requestData['?']['general_model_slug'] = $model;
 
-            return $this->sendRequest($this->buildUrl(), $manufacturer ? "{$type}_{$manufacturer}_models" : 'models');
+            return $this->sendRequest($this->buildUrl(), "{$type}_{$manufacturer}_{$model}_models");
         }
 
         return $this->noContent();
@@ -92,7 +92,7 @@ class ExistUaComponent extends Component
             $this->requestData['slashes'][] = 'modifications';
             $this->requestData['?']['car_model__slug'] = $model;
 
-            return $this->sendRequest($this->buildUrl(), $model ? "{$type}_{$model}_mods" : 'mods');
+            return $this->sendRequest($this->buildUrl(), "{$type}_{$model}_mods");
         }
 
         return $this->noContent();
@@ -105,7 +105,7 @@ class ExistUaComponent extends Component
             $this->requestData['slashes'][] = "catalog/tree/{$modification}";
             $this->requestData['?']['car_model__slug'] = $model;
 
-            return $this->sendRequest($this->buildUrl(), $model && $modification ? "{$type}_{$model}_{$modification}_parts" : 'parts');
+            return $this->sendRequest($this->buildUrl(), "{$type}_{$model}_{$modification}_parts");
         }
 
         return $this->noContent();

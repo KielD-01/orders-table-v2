@@ -34,6 +34,14 @@ application.controller('VehiclesController', function ($rootScope, $scope, $stat
             $scope.initialized = true;
         }
 
+        $rootScope.vehicle = {
+            type: null,
+            manufacturer: null,
+            generalModel: null,
+            model: null,
+            modification: null
+        };
+
         $scope.selectedType = type;
 
         ManufacturersService.getManufacturersByType(type)
@@ -78,7 +86,7 @@ application.controller('VehiclesController', function ($rootScope, $scope, $stat
 
                 $rootScope.vehicle = {
                     type: $rootScope.vehicle.type,
-                    manufacturer: $rootScope.vehicle.type,
+                    manufacturer: $rootScope.vehicle.manufacturer,
                     generalModel: generalModel,
                     model: null,
                     modification: null
@@ -93,7 +101,7 @@ application.controller('VehiclesController', function ($rootScope, $scope, $stat
 
                 $rootScope.vehicle = {
                     type: $rootScope.vehicle.type,
-                    manufacturer: $rootScope.vehicle.type,
+                    manufacturer: $rootScope.vehicle.manufacturer,
                     generalModel: $rootScope.vehicle.generalModel,
                     model: model,
                     modification: null
@@ -110,7 +118,7 @@ application.controller('VehiclesController', function ($rootScope, $scope, $stat
 
                 $rootScope.vehicle = {
                     type: $rootScope.vehicle.type,
-                    manufacturer: $rootScope.vehicle.type,
+                    manufacturer: $rootScope.vehicle.manufacturer,
                     generalModel: $rootScope.vehicle.generalModel,
                     model: $rootScope.vehicle.model,
                     modification: modification
@@ -121,12 +129,8 @@ application.controller('VehiclesController', function ($rootScope, $scope, $stat
     };
 
     $scope.parseCategories = function (tree) {
-
-        console.log(tree);
-
         angular.forEach(tree.children, function (data) {
             if (Array.isArray(data.children) && data.children.length > 0) {
-                console.log(`We are in ${data.description}`);
                 $scope.parseCategories(data);
             } else {
                 if ($scope.categories.indexOf(data.description) === -1) {
@@ -187,6 +191,11 @@ application.controller('VehiclesController', function ($rootScope, $scope, $stat
     switch ($state.current.name) {
         case 'cars_manufacturers':
             $scope.getVehicleTypes();
+
+            if ($rootScope.vehicle.type) {
+                $scope.getManufacturersByType($rootScope.vehicle.type);
+            }
+
             break;
         case 'car_general_models':
             $scope.getGeneralModelsByManufacturer($stateParams.manufacturer);
